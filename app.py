@@ -27,13 +27,11 @@ st.sidebar.header("Passenger Features")
 pclass = st.sidebar.selectbox("Pclass (Passenger Class)", [1, 2, 3])
 sex = st.sidebar.selectbox("Sex", ["male", "female"])
 age = st.sidebar.number_input("Age", min_value=0.0, max_value=100.0, value=25.0)
-sibspouse = st.sidebar.number_input("Number of Siblings/Spouses Aboard", min_value=0, value=0)
-parentchild = st.sidebar.number_input("Number of Parents/Children Aboard", min_value=0, value=0)
 fare = st.sidebar.number_input("Fare", min_value=0.0, value=30.0)
 
 # Create a DataFrame from the inputs
-input_data = pd.DataFrame([[pclass, sex, age, sibspouse, parentchild, fare]],
-                          columns=["Pclass", "Sex", "Age", "sibspouse", "parentchild", "Fare"])
+input_data = pd.DataFrame([[pclass, sex, age, fare]],
+                          columns=["Pclass", "Sex", "Age", "Fare"])
 
 # Make prediction
 if st.sidebar.button("Predict Survival"):
