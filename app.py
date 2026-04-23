@@ -33,11 +33,15 @@ fare = st.sidebar.number_input("Fare", min_value=0.0, value=30.0)
 input_data = pd.DataFrame([[pclass, sex, age, fare]],
                           columns=["Pclass", "Sex", "Age", "Fare"])
 
+# Define the higher prediction threshold
+higher_threshold = 0.6
+
 # Make prediction
 if st.sidebar.button("Predict Survival"):
     try:
-        prediction = model.predict(input_data)
         prediction_proba = model.predict_proba(input_data)[:, 1] # Probability of survival
+        # Apply the higher threshold to get new predictions
+        prediction = (prediction_proba >= higher_threshold).astype(int)
 
         st.subheader("Prediction")
         if prediction[0] == 1:
